@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <ImageView
+        android:id="@+id/bicycle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:src="@drawable/bike"
+        android:layout_marginTop="173dp"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true" />
+
+    <ImageView
+        android:id="@+id/wheel2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/wheel"
+        android:layout_alignTop="@+id/wheel1"
+        android:layout_toLeftOf="@+id/wheel1"
+        android:layout_toStartOf="@+id/wheel1"
+        android:layout_marginRight="50dp"
+        android:layout_marginEnd="50dp" />
+
+    <ImageView
+        android:id="@+id/wheel1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/wheel"
+        android:layout_marginRight="64dp"
+        android:layout_marginEnd="64dp"
+        android:layout_alignTop="@+id/bicycle"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true"
+        android:layout_marginTop="50dp" />
+</RelativeLayout>

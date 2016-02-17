@@ -1,13 +1,17 @@
 package com.hrom.andrew.testanimation;
 
+import android.animation.Animator;
 import android.app.Activity;
 import android.content.Intent;
+import android.graphics.Color;
 import android.net.Uri;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.view.ViewAnimationUtils;
+import android.view.animation.AccelerateInterpolator;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
 import android.widget.ImageView;
@@ -82,13 +86,38 @@ public class MainActivity extends Activity {
     }
 
     public void openAnimationActivity(View view) {
+        //this.finish();
         Intent intent = new Intent(MainActivity.this, ShowAnimation.class);
         startActivity(intent);
+        overridePendingTransition(R.anim.diagonal_in, R.anim.diagonal_out);
+    }
+
+    public void openBicycleAnimationActivity(View view) {
+        Intent intent = new Intent(MainActivity.this, BicycleAnimation.class);
+        startActivity(intent);
+
+        int cx = (view.getLeft() + view.getRight()) / 2;
+        int cy = view.getTop();
+        int finalRadius = Math.max(view.getWidth(), view.getHeight());
+
+        Animator anim = ViewAnimationUtils.createCircularReveal(view, cx, cy, 0, finalRadius);
+        view.setBackgroundColor(Color.BLUE);
+        anim.start();
     }
 
     public void getUp(View view) {
         animation = AnimationUtils.loadAnimation(getApplicationContext(), R.anim.get_up);
         image.startAnimation(animation);
+    }
+
+    public void onGif(View view) {
+        Intent intent = new Intent(MainActivity.this, GifActivity.class);
+        startActivity(intent);
+    }
+
+    public void onGame(View view) {
+        Intent intent = new Intent(MainActivity.this, GameActivity.class);
+        startActivity(intent);
     }
 
     public void shoProgress(View v) {
