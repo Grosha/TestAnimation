@@ -21,6 +21,7 @@ import android.widget.Toast;
 import com.google.android.gms.appindexing.Action;
 import com.google.android.gms.appindexing.AppIndex;
 import com.google.android.gms.common.api.GoogleApiClient;
+import com.hrom.andrew.testanimation.fragment.FragmentActivity;
 
 public class MainActivity extends Activity {
     private ImageView image, image1;
@@ -111,12 +112,25 @@ public class MainActivity extends Activity {
     }
 
     public void onGif(View view) {
-        Intent intent = new Intent(MainActivity.this, GifActivity.class);
+        Intent intent = new Intent(MainActivity.this, FragmentActivity.class);
+        intent.putExtra("number", 1);
         startActivity(intent);
     }
 
     public void onGame(View view) {
         Intent intent = new Intent(MainActivity.this, GameActivity.class);
+        startActivity(intent);
+    }
+
+    public void onSnow(View view) {
+        Intent intent = new Intent(MainActivity.this, FragmentActivity.class);
+        intent.putExtra("number", 2);
+        startActivity(intent);
+    }
+
+    public void onPokeball(View view) {
+        Intent intent = new Intent(MainActivity.this, FragmentActivity.class);
+        intent.putExtra("number", 3);
         startActivity(intent);
     }
 

@@ -1,0 +1,120 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="#2d6b75">
+
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/snowlake"
+        android:layout_gravity="center_horizontal"
+        android:src="@drawable/snowflake"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true"
+        android:layout_marginRight="118dp"
+        android:layout_marginEnd="118dp" />
+
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/snowlake2"
+        android:layout_gravity="center_horizontal"
+        android:src="@drawable/snowflake"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true"
+        android:layout_marginRight="168dp"
+        android:layout_marginEnd="158dp" />
+
+
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/star1"
+        android:layout_gravity="center_horizontal"
+        android:src="@drawable/star"
+        android:layout_below="@+id/star4"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true" />
+
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/star2"
+        android:layout_gravity="center_horizontal"
+        android:src="@drawable/star"
+        android:layout_below="@+id/star1"
+        android:layout_alignRight="@+id/snowlake"
+        android:layout_alignEnd="@+id/snowlake"
+        android:layout_marginTop="92dp" />
+
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/star3"
+        android:layout_gravity="center_horizontal"
+        android:src="@drawable/star"
+        android:layout_marginLeft="99dp"
+        android:layout_marginStart="99dp"
+        android:layout_alignBottom="@+id/star2"
+        android:layout_toRightOf="@+id/star1"
+        android:layout_toEndOf="@+id/star1"
+        android:layout_marginBottom="41dp" />
+
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/star4"
+        android:layout_gravity="center_horizontal"
+        android:src="@drawable/star"
+        android:layout_below="@+id/snowlake"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true"
+        android:layout_marginRight="50dp"
+        android:layout_marginEnd="50dp" />
+
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/star5"
+        android:layout_gravity="center_horizontal"
+        android:src="@drawable/star"
+        android:layout_marginTop="43dp"
+        android:layout_below="@+id/star6"
+        android:layout_toLeftOf="@+id/snowlake"
+        android:layout_toStartOf="@+id/snowlake" />
+
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/star6"
+        android:layout_gravity="center_horizontal"
+        android:src="@drawable/star"
+        android:layout_centerVertical="true"
+        android:layout_toRightOf="@+id/star1"
+        android:layout_toEndOf="@+id/star1" />
+
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/star7"
+        android:layout_gravity="center_horizontal"
+        android:src="@drawable/star"
+        android:layout_marginBottom="41dp"
+        android:layout_alignParentBottom="true"
+        android:layout_alignLeft="@+id/star3"
+        android:layout_alignStart="@+id/star3" />
+
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/star8"
+        android:layout_gravity="center_horizontal"
+        android:src="@drawable/star"
+        android:layout_above="@+id/star7"
+        android:layout_alignLeft="@+id/star4"
+        android:layout_alignStart="@+id/star4" />
+</RelativeLayout>
