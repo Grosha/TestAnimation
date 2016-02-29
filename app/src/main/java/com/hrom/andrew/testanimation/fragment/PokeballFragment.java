@@ -77,6 +77,7 @@ public class PokeballFragment extends Fragment {
                         Log.d("coordinate", "y = " + String.valueOf(animation.getAnimatedValue()));
 
                         if (x <= 210) {
+
                             Log.d("coordinate", "radius = " + radius);
                             Log.d("coordinate", "radius*2 = " + radius * radius);
                             x = 210 - x;
