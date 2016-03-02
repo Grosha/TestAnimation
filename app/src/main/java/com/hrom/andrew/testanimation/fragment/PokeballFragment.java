@@ -4,9 +4,12 @@ import android.animation.Animator;
 import android.animation.AnimatorSet;
 import android.animation.ObjectAnimator;
 import android.animation.ValueAnimator;
+import android.graphics.Matrix;
 import android.os.Build;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.support.v4.app.ListFragment;
+import android.support.v4.view.ViewCompat;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -16,10 +19,14 @@ import android.view.animation.AccelerateInterpolator;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
+import android.widget.RelativeLayout;
+import android.widget.Toast;
 
 import com.hrom.andrew.testanimation.CustomInterpolator;
 import com.hrom.andrew.testanimation.R;
 
+import java.util.ArrayList;
 import java.util.Random;
 
 public class PokeballFragment extends Fragment {
@@ -40,7 +47,7 @@ public class PokeballFragment extends Fragment {
         final ImageView pokeball_3 = (ImageView) getActivity().findViewById(R.id.pokeball3);
 
         final Random r = new Random();
-        int random = r.nextInt(30);
+        final int random = r.nextInt(30);
 
         /*if (0 <= random & random < 10) {
             pokeball_1.startAnimation(animSnowFlake);
@@ -58,58 +65,35 @@ public class PokeballFragment extends Fragment {
                 ObjectAnimator animator4 = ObjectAnimator.ofFloat(pokeball_3, "translationX", 0F, -420F);
                 AnimatorSet set1 = new AnimatorSet();
                 set1.play(animator4);
-                set1.setDuration(4000);
+                set1.setDuration(3000);
                 set1.start();
                 Log.d("coordinate", String.valueOf(animator4.getCurrentPlayTime()));
 
-                ObjectAnimator animator1 = ObjectAnimator.ofFloat(pokeball_1, "translationX", 0F, 420F);
-                animator1.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
-                    @Override
-                    public void onAnimationUpdate(ValueAnimator animation) {
-                        Log.d("coordinate", "x = " + String.valueOf(animation.getAnimatedValue()));
-                        x = Float.parseFloat(animation.getAnimatedValue().toString());
-                    }
-                });
-                ObjectAnimator animator2 = ObjectAnimator.ofFloat(pokeball_1, "translationY", 0F, 0F);
+
+                ValueAnimator animator2 = ValueAnimator.ofFloat(0F, 2 * radius);
                 animator2.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
                     @Override
                     public void onAnimationUpdate(ValueAnimator animation) {
-                        Log.d("coordinate", "y = " + String.valueOf(animation.getAnimatedValue()));
-
-                        if (x <= 210) {
-
-                            Log.d("coordinate", "radius = " + radius);
-                            Log.d("coordinate", "radius*2 = " + radius * radius);
-                            x = 210 - x;
-                            Log.d("coordinate", "x = " + x);
-                            Log.d("coordinate", "x*2 = " + x * x);
-                            Log.d("coordinate", "різниця = " + Math.abs(radius * radius - x * x));
-                            Log.d("coordinate", "корінь = " + Math.sqrt(Math.abs(radius * radius - x * x)));
-                            y = (float) Math.sqrt(Math.abs(radius * radius - x * x));
-                        } else if (210 < x & x <= 420) {
-                            Log.d("coordinate", "radius = " + radius);
-                            Log.d("coordinate", "radius* = " + radius * radius);
-                            x = x - 210;
-                            Log.d("coordinate", "x = " + x);
-                            Log.d("coordinate", "x*2 = " + x * x);
-                            Log.d("coordinate", "різниця = " + Math.abs(radius * radius - x * x));
-                            Log.d("coordinate", "корінь = " + Math.sqrt(Math.abs(radius * radius - x * x)));
-                            Log.d("coordinate", "radius = " + Math.abs(radius * radius - x * x));
-                            Log.d("coordinate", "radius = " + Math.sqrt(Math.abs(radius * radius - x * x)));
-                            y = (float) Math.sqrt(Math.abs(radius * radius - x * x));
+                        x = (Float) animation.getAnimatedValue();
+                        Log.d("coordinate", "x = " + x);
+                        float newX = 0;
+                        if (x <= radius) {
+                            newX = radius - x;
+                            Log.d("coordinate", "newX = " + newX);
+                        } else if (radius < x && x <= radius * 2) {
+                            newX = x - radius;
+                            Log.d("coordinate", "newX = " + newX);
                         }
-                        animation.setFloatValues(-y);
+                        y = (float) Math.sqrt(radius * radius - newX * newX);
+                        Log.d("coordinate", "y = " + y);
+                        ViewCompat.setTranslationX(pokeball_1, x);
+                        ViewCompat.setTranslationY(pokeball_1, y);
                     }
                 });
                 AnimatorSet set = new AnimatorSet();
-                set.play(animator1).with(animator2);
-                set.setDuration(1000);
+                set.play(animator2);
+                set.setDuration(3000);
                 set.start();
-                Log.d("coordinate", String.valueOf(animator2.getAnimatedValue("translationY")));
-                Log.d("coordinate", String.valueOf(animator1.getAnimatedValue("translationX")));
-
-                ValueAnimator valueAnimator = ValueAnimator.ofFloat();
-                //valueAnimator.addUpdateListener();
             }
         });
 
