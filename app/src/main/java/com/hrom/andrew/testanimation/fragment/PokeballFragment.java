@@ -1,39 +1,24 @@
 package com.hrom.andrew.testanimation.fragment;
 
-import android.animation.Animator;
 import android.animation.AnimatorSet;
 import android.animation.ObjectAnimator;
 import android.animation.ValueAnimator;
-import android.graphics.Matrix;
-import android.os.Build;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
-import android.support.v4.app.ListFragment;
 import android.support.v4.view.ViewCompat;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
-import android.view.ViewAnimationUtils;
 import android.view.ViewGroup;
-import android.view.animation.AccelerateInterpolator;
-import android.view.animation.Animation;
-import android.view.animation.AnimationUtils;
 import android.widget.Button;
 import android.widget.ImageView;
-import android.widget.LinearLayout;
-import android.widget.RelativeLayout;
-import android.widget.Toast;
 
-import com.hrom.andrew.testanimation.CustomInterpolator;
 import com.hrom.andrew.testanimation.R;
-
-import java.util.ArrayList;
-import java.util.Random;
 
 public class PokeballFragment extends Fragment {
     private float x = 0f;
     private float y = 0f;
-    private float radius = 210f;
+    private float radius = 105f;
     ImageView pokeball_1 = null;
     ImageView pokeball_2 = null;
     ImageView pokeball_3 = null;
@@ -49,13 +34,14 @@ public class PokeballFragment extends Fragment {
         pokeball_1 = (ImageView) getActivity().findViewById(R.id.pokeball1);
         pokeball_2 = (ImageView) getActivity().findViewById(R.id.pokeball2);
         pokeball_3 = (ImageView) getActivity().findViewById(R.id.pokeball3);
-        Button strat = (Button) view.findViewById(R.id.start);
+        Button start1 = (Button) view.findViewById(R.id.start_1);
+        Button start2 = (Button) view.findViewById(R.id.start_2);
 
-        strat.setOnClickListener(new View.OnClickListener() {
+        start1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
 
-                Random r = new Random();
+                /*Random r = new Random();
                 int first = 0, second = 0;
                 int random = r.nextInt(30);
 
@@ -80,9 +66,49 @@ public class PokeballFragment extends Fragment {
                 }
 
                 animationLine(first,second);
-                animationCircle(first,second);
+                animationCircle(first,second);*/
 
-                /*Log.d("coordinate", "start");
+                Log.d("coordinate", "start1");
+                ObjectAnimator animator4 = ObjectAnimator.ofFloat(pokeball_2, "translationX", 0F, -210F);
+                AnimatorSet set1 = new AnimatorSet();
+                set1.play(animator4);
+                set1.setDuration(3000);
+                set1.start();
+                Log.d("coordinate", String.valueOf(animator4.getCurrentPlayTime()));
+
+
+                ValueAnimator animator2 = ValueAnimator.ofFloat(0F, 2 * radius);
+                animator2.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
+                    @Override
+                    public void onAnimationUpdate(ValueAnimator animation) {
+                        x = (Float) animation.getAnimatedValue();
+                        Log.d("coordinate", "x = " + x);
+                        float newX = 0;
+                        if (x <= radius) {
+                            newX = radius - x;
+                            Log.d("coordinate", "newX = " + newX);
+                        } else if (radius < x && x <= radius * 2) {
+                            newX = x - radius;
+                            Log.d("coordinate", "newX = " + newX);
+                        }
+                        y = (float) Math.sqrt(radius * radius - newX * newX);
+                        Log.d("coordinate", "y = " + y);
+                        ViewCompat.setTranslationX(pokeball_1, x);
+                        ViewCompat.setTranslationY(pokeball_1, y);
+                    }
+                });
+                AnimatorSet set = new AnimatorSet();
+                set.play(animator2);
+                set.setDuration(3000);
+                set.start();
+            }
+        });
+
+        start2.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                radius = 210f;
+                Log.d("coordinate", "start2");
                 ObjectAnimator animator4 = ObjectAnimator.ofFloat(pokeball_3, "translationX", 0F, -420F);
                 AnimatorSet set1 = new AnimatorSet();
                 set1.play(animator4);
@@ -114,7 +140,7 @@ public class PokeballFragment extends Fragment {
                 AnimatorSet set = new AnimatorSet();
                 set.play(animator2);
                 set.setDuration(3000);
-                set.start();*/
+                set.start();
             }
         });
 
@@ -173,32 +199,6 @@ public class PokeballFragment extends Fragment {
             }
 
         }
-        ValueAnimator animator = ValueAnimator.ofFloat(0F, 2 * radius);
-        final ImageView finalPokeball = pokeball;
-        final float finalRadius = radius;
-        animator.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
-            @Override
-            public void onAnimationUpdate(ValueAnimator animation) {
-                x = (Float) animation.getAnimatedValue();
-                Log.d("coordinate", "x = " + x);
-                float newX = 0;
-                if (x <= finalRadius) {
-                    newX = finalRadius - x;
-                    Log.d("coordinate", "newX = " + newX);
-                } else if (finalRadius < x && x <= finalRadius * 2) {
-                    newX = x - finalRadius;
-                    Log.d("coordinate", "newX = " + newX);
-                }
-                y = (float) Math.sqrt(finalRadius * finalRadius - newX * newX);
-                Log.d("coordinate", "y = " + y);
-                ViewCompat.setTranslationX(finalPokeball, x);
-                ViewCompat.setTranslationY(finalPokeball, y);
-            }
-        });
-        AnimatorSet set = new AnimatorSet();
-        set.play(animator);
-        set.setDuration(3000);
-        set.start();
     }
 
     public void animationLine(int first, int second) {
@@ -230,12 +230,5 @@ public class PokeballFragment extends Fragment {
             }
 
         }
-        Log.d("coordinate", "start");
-        ObjectAnimator animator4 = ObjectAnimator.ofFloat(pokeball, "translationX", 0F, diameter);
-        AnimatorSet set1 = new AnimatorSet();
-        set1.play(animator4);
-        set1.setDuration(3000);
-        set1.start();
-        Log.d("coordinate", String.valueOf(animator4.getCurrentPlayTime()));
     }
 }

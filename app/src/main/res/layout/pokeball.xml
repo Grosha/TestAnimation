@@ -38,10 +38,21 @@
         style="?android:attr/buttonStyleSmall"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="start"
-        android:id="@+id/start"
+        android:text="start 1"
+        android:id="@+id/start_1"
         android:layout_alignParentTop="true"
-        android:layout_centerHorizontal="true" />
+        android:layout_toLeftOf="@+id/pokeball2"
+        android:layout_toStartOf="@+id/pokeball2" />
+
+    <Button
+        style="?android:attr/buttonStyleSmall"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="start 2"
+        android:id="@+id/start_2"
+        android:layout_alignParentTop="true"
+        android:layout_toRightOf="@+id/pokeball2"
+        android:layout_toEndOf="@+id/pokeball2" />
 
 
 </RelativeLayout>
