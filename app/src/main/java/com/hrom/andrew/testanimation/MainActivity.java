@@ -134,6 +134,12 @@ public class MainActivity extends Activity {
         startActivity(intent);
     }
 
+    public void onSVGView(View view) {
+        Intent intent = new Intent(MainActivity.this, FragmentActivity.class);
+        intent.putExtra("number", 4);
+        startActivity(intent);
+    }
+
     public void shoProgress(View v) {
         progressBar.setVisibility(ProgressBar.VISIBLE);
     }

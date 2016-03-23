@@ -31,6 +31,8 @@ public class FragmentActivity extends AppCompatActivity {
                 break;
             case 3:
                 transaction.replace(R.id.container, new PokeballFragment());
+                break;case 4:
+                transaction.replace(R.id.container, new SVGFragment());
                 break;
         }
         transaction.commit();
